@@ -2,5 +2,6 @@
 {
     public class CreatePontoDto
     {
+        public int FuncId { get; set; }
     }
 }

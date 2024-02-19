@@ -1,6 +1,9 @@
-﻿namespace ControleEmpresa.Data
+﻿using ControleEmpresa.Data.Dtos.Funcionario;
+
+namespace ControleEmpresa.Data
 {
-    public interface ISetorDao
+    public interface IFuncionarioDao
     {
+        void Criar(CreateFuncionarioDto dto);
     }
 }
