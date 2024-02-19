@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ControleEmpresa.Data.Dtos.Ponto;
+using ControleEmpresa.Data.Dtos.PontoDTO;
 using ControleEmpresa.Models;
 
 namespace ControleEmpresa.Data.Entity

@@ -1,5 +1,5 @@
 ﻿using ControleEmpresa.Data;
-using ControleEmpresa.Data.Dtos.Setor;
+using ControleEmpresa.Data.Dtos.SetorDTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleEmpresa.Controllers

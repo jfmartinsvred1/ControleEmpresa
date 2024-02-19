@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ControleEmpresa.Data.Dtos.Ponto;
+using ControleEmpresa.Data.Dtos.PontoDTO;
 using ControleEmpresa.Models;
 
 namespace ControleEmpresa.Profiles
@@ -9,6 +9,8 @@ namespace ControleEmpresa.Profiles
         public PontoProfile()
         {
             CreateMap<CreatePontoDto, Ponto>();
+            CreateMap<Ponto, ReadPontoDto>();
+            CreateMap<Ponto, ReadPonto_FuncionarioDto>();
 
         }
     }

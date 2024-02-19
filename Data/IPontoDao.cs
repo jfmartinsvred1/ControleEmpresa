@@ -1,4 +1,4 @@
-﻿using ControleEmpresa.Data.Dtos.Ponto;
+﻿using ControleEmpresa.Data.Dtos.PontoDTO;
 
 namespace ControleEmpresa.Data
 {

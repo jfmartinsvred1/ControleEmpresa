@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ControleEmpresa.Data.Dtos.Funcionario;
+using ControleEmpresa.Data.Dtos.FuncionarioDTO;
 using ControleEmpresa.Models;
 
 namespace ControleEmpresa.Profiles
@@ -9,6 +9,7 @@ namespace ControleEmpresa.Profiles
         public FuncionarioProfile()
         {
             CreateMap<CreateFuncionarioDto, Funcionario>();
+            CreateMap<Funcionario, ReadFuncionarioDto>();
         }
     }
 }

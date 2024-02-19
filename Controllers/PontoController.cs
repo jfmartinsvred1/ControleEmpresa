@@ -1,5 +1,5 @@
 ﻿using ControleEmpresa.Data;
-using ControleEmpresa.Data.Dtos.Ponto;
+using ControleEmpresa.Data.Dtos.PontoDTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleEmpresa.Controllers

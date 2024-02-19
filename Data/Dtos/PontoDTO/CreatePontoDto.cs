@@ -1,4 +1,5 @@
-﻿namespace ControleEmpresa.Data.Dtos.Ponto
+﻿namespace ControleEmpresa.Data.Dtos.PontoDTO
+
 {
     public class CreatePontoDto
     {

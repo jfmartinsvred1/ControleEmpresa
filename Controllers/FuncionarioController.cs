@@ -1,5 +1,6 @@
 ﻿using ControleEmpresa.Data;
-using ControleEmpresa.Data.Dtos.Funcionario;
+using ControleEmpresa.Data.Dtos.FuncionarioDTO;
+using ControleEmpresa.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleEmpresa.Controllers
@@ -20,6 +21,11 @@ namespace ControleEmpresa.Controllers
         {
             _funcionarioDao.Criar(dto);
             return NoContent();
+        }
+        [HttpGet]
+        public IEnumerable<ReadFuncionarioDto> ListarFuncionarios()
+        {
+            return _funcionarioDao.LerTodosFuncionarios();
         }
     }
 }

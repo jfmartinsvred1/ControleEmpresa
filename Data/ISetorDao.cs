@@ -1,4 +1,4 @@
-﻿using ControleEmpresa.Data.Dtos.Setor;
+﻿using ControleEmpresa.Data.Dtos.SetorDTO;
 
 namespace ControleEmpresa.Data
 {

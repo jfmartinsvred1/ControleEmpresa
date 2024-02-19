@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ControleEmpresa.Data.Dtos.Setor
+namespace ControleEmpresa.Data.Dtos.SetorDTO
 {
     public class CreateSetorDto
     {

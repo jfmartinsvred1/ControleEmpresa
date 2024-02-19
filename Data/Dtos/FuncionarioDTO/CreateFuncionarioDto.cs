@@ -1,4 +1,4 @@
-﻿namespace ControleEmpresa.Data.Dtos.Funcionario
+﻿namespace ControleEmpresa.Data.Dtos.FuncionarioDTO
 {
     public class CreateFuncionarioDto
     {
