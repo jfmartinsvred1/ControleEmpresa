@@ -5,6 +5,6 @@ namespace ControleEmpresa.Data.Dtos.FuncionarioDTO
     public class DeleteFuncionarioDTo
     {
         [Key]
-        public int FuncId { get; set; }
+        public int FuncionarioId { get; set; }
     }
 }

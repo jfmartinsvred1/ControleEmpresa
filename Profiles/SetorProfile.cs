@@ -9,7 +9,6 @@ namespace ControleEmpresa.Profiles
         public SetorProfile()
         {
             CreateMap<CreateSetorDto, Setor>();
-            CreateMap<Setor, ReadSetor_FuncionarioDto>();
             CreateMap<Setor, ReadSetorDto>();
         }
     }

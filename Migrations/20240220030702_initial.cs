@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ControleEmpresa.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,7 @@ namespace ControleEmpresa.Migrations
                 name: "Funcionarios",
                 columns: table => new
                 {
-                    FuncId = table.Column<int>(type: "int", nullable: false)
+                    FuncionarioId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -41,7 +41,7 @@ namespace ControleEmpresa.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Funcionarios", x => x.FuncId);
+                    table.PrimaryKey("PK_Funcionarios", x => x.FuncionarioId);
                     table.ForeignKey(
                         name: "FK_Funcionarios_Setores_SetorId",
                         column: x => x.SetorId,
@@ -58,19 +58,19 @@ namespace ControleEmpresa.Migrations
                     PontoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Dia = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Entrada = table.Column<TimeOnly>(type: "time(6)", nullable: false),
-                    Saida = table.Column<TimeOnly>(type: "time(6)", nullable: false),
-                    FuncId = table.Column<int>(type: "int", nullable: false),
-                    FuncionarioFuncId = table.Column<int>(type: "int", nullable: true)
+                    Entrada = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Saida = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    FuncionarioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pontos", x => x.PontoId);
                     table.ForeignKey(
-                        name: "FK_Pontos_Funcionarios_FuncionarioFuncId",
-                        column: x => x.FuncionarioFuncId,
+                        name: "FK_Pontos_Funcionarios_FuncionarioId",
+                        column: x => x.FuncionarioId,
                         principalTable: "Funcionarios",
-                        principalColumn: "FuncId");
+                        principalColumn: "FuncionarioId",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -80,9 +80,9 @@ namespace ControleEmpresa.Migrations
                 column: "SetorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pontos_FuncionarioFuncId",
+                name: "IX_Pontos_FuncionarioId",
                 table: "Pontos",
-                column: "FuncionarioFuncId");
+                column: "FuncionarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

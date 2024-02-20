@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ControleEmpresa.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240219003858_Inicial")]
-    partial class Inicial
+    [Migration("20240220030702_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace ControleEmpresa.Migrations
 
             modelBuilder.Entity("ControleEmpresa.Models.Funcionario", b =>
                 {
-                    b.Property<int>("FuncId")
+                    b.Property<int>("FuncionarioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -36,7 +36,7 @@ namespace ControleEmpresa.Migrations
                     b.Property<int>("SetorId")
                         .HasColumnType("int");
 
-                    b.HasKey("FuncId");
+                    b.HasKey("FuncionarioId");
 
                     b.HasIndex("SetorId");
 
@@ -52,21 +52,18 @@ namespace ControleEmpresa.Migrations
                     b.Property<DateTime>("Dia")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<TimeOnly>("Entrada")
-                        .HasColumnType("time(6)");
+                    b.Property<DateTime>("Entrada")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<int>("FuncId")
+                    b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FuncionarioFuncId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeOnly>("Saida")
-                        .HasColumnType("time(6)");
+                    b.Property<DateTime?>("Saida")
+                        .HasColumnType("datetime(6)");
 
                     b.HasKey("PontoId");
 
-                    b.HasIndex("FuncionarioFuncId");
+                    b.HasIndex("FuncionarioId");
 
                     b.ToTable("Pontos");
                 });
@@ -100,7 +97,9 @@ namespace ControleEmpresa.Migrations
                 {
                     b.HasOne("ControleEmpresa.Models.Funcionario", "Funcionario")
                         .WithMany("Pontos")
-                        .HasForeignKey("FuncionarioFuncId");
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Funcionario");
                 });

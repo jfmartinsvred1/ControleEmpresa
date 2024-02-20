@@ -25,26 +25,26 @@ namespace ControleEmpresa.Data.Entity
 
         public void DeletarFuncionario(DeleteFuncionarioDTo dto)
         {
-            var func = _context.Funcionarios.FirstOrDefault(id => id.FuncId == dto.FuncId);
+            var func = _context.Funcionarios.FirstOrDefault(id => id.FuncionarioId == dto.FuncionarioId);
             _context.Funcionarios.Remove(func);
             _context.SaveChanges();
         }
 
-        public IEnumerable<ReadFuncionarioDto> LerFuncionariosPorSetor()
+        public IEnumerable<Funcionario> LerFuncionariosPorSetor()
         {
             throw new NotImplementedException();
         }
 
-        public ReadFuncionarioDto LerFuncionarioUnico(int id)
+        public Funcionario LerFuncionarioUnico(int id)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<ReadFuncionarioDto> LerTodosFuncionarios()
         {
-            var funcionarios = _context.Funcionarios.Include(s=>s.Setor).Include(s=>s.Pontos).ToList();
-            var readFuncsDto = _mapper.Map<List<ReadFuncionarioDto>>(funcionarios);
-            return readFuncsDto;
+            var func = _context.Funcionarios.Include(p => p.Pontos).Include(s => s.Setor).ToList();
+            var funcsDto = _mapper.Map<List<ReadFuncionarioDto>>(func);
+            return funcsDto;
         }
     }
 }

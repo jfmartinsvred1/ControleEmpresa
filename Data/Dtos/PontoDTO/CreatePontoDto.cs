@@ -3,6 +3,6 @@
 {
     public class CreatePontoDto
     {
-        public int FuncId { get; set; }
+        public int FuncionarioId { get; set; }
     }
 }
