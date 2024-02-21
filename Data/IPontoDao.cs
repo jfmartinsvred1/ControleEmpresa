@@ -8,5 +8,6 @@ namespace ControleEmpresa.Data
         void Saida(int funcId);
         IEnumerable<ReadPontoDto> LerTodosPontos();
         IEnumerable<ReadPontoDto> LerPontosDeUmFuncPorId(int id);
+        string DiaDaSemana(int id);
     }
 }

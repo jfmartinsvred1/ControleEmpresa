@@ -37,5 +37,10 @@ namespace ControleEmpresa.Controllers
         {
             return _pontoDao.LerPontosDeUmFuncPorId(id);
         }
+        [HttpGet("string")]
+        public string get(int id)
+        {
+            return _pontoDao.DiaDaSemana(id);
+        }
     }
 }

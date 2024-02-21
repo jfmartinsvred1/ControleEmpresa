@@ -2,6 +2,7 @@
 using ControleEmpresa.Data.Dtos.PontoDTO;
 using ControleEmpresa.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace ControleEmpresa.Data.Entity
 {
@@ -13,6 +14,13 @@ namespace ControleEmpresa.Data.Entity
         {
             _mapper = mapper;
             _dbContext = dbContext;
+        }
+
+        public string DiaDaSemana(int id)
+        {
+            var pontos = LerPontosDeUmFuncPorId(id).First();
+            return pontos.DiaDaSemana.ToString("",CultureInfo.InvariantCulture);
+            
         }
 
         public void Entrada(CreatePontoDto dto)

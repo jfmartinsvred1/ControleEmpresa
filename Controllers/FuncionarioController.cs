@@ -26,5 +26,6 @@ namespace ControleEmpresa.Controllers
         {
             return _funcionarioDao.LerTodosFuncionarios();
         }
+        
     }
 }
