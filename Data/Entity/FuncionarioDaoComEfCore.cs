@@ -22,22 +22,22 @@ namespace ControleEmpresa.Data.Entity
             _context.Funcionarios.Add(func);
             _context.SaveChanges();
         }
-
-        public void DeletarFuncionario(DeleteFuncionarioDTo dto)
+        public void DeletarFuncionario(int id)
         {
-            var func = _context.Funcionarios.FirstOrDefault(id => id.FuncionarioId == dto.FuncionarioId);
-            _context.Funcionarios.Remove(func);
+            var funcionario = _mapper.Map<Funcionario>(_context.Funcionarios.FirstOrDefault(i=>i.FuncionarioId==id));
+            _context.Funcionarios.Remove(funcionario);
             _context.SaveChanges();
         }
 
-        public IEnumerable<Funcionario> LerFuncionariosPorSetor()
+        public IEnumerable<ReadFuncionarioDto> LerFuncionariosPorSetor(string setor)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<IEnumerable<ReadFuncionarioDto>>(_context.Funcionarios.Include(s => s.Setor).Where(s=>s.Setor.Nome==setor));
         }
 
-        public Funcionario LerFuncionarioUnico(int id)
+        public ReadFuncionarioDto LerFuncionarioUnico(int id)
         {
-            throw new NotImplementedException();
+            var funcionario = _context.Funcionarios.FirstOrDefault(i => i.FuncionarioId == id);
+            return _mapper.Map<ReadFuncionarioDto>(funcionario);
         }
 
         public IEnumerable<ReadFuncionarioDto> LerTodosFuncionarios()

@@ -5,5 +5,6 @@ namespace ControleEmpresa.Data
     public interface ISetorDao
     {
         void Criar(CreateSetorDto dto);
+        IEnumerable<ReadSetorDto> LerTodosSetores();
     }
 }

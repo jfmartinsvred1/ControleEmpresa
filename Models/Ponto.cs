@@ -7,8 +7,9 @@ namespace ControleEmpresa.Models
         [Key]
         public int PontoId { get; set; }
         public DateTime Dia { get; set; } = DateTime.Today;
-        public DateTime Entrada { get; set; } = DateTime.Now;
-        public DateTime? Saida { get; set; } = null;
+        public DayOfWeek DiaDaSemana { get; set; } = DateTime.Now.DayOfWeek;
+        public TimeSpan Entrada { get; set; } = DateTime.Now.TimeOfDay;
+        public TimeSpan? Saida { get; set; } = null;
         public int FuncionarioId { get; set; }
         public virtual Funcionario? Funcionario { get; set; }
     }

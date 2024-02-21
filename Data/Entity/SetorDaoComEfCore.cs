@@ -21,5 +21,10 @@ namespace ControleEmpresa.Data.Entity
             _context.Setores.Add(setor);
             _context.SaveChanges();
         }
+
+        public IEnumerable<ReadSetorDto> LerTodosSetores()
+        {
+            return _mapper.Map<IEnumerable<ReadSetorDto>>(_context.Setores.ToList());
+        }
     }
 }

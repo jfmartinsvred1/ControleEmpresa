@@ -20,5 +20,10 @@ namespace ControleEmpresa.Controllers
             _setorDao.Criar(dto);
             return NoContent();
         }
+        [HttpGet]
+        public IEnumerable<ReadSetorDto> GetSetores() 
+        {
+            return _setorDao.LerTodosSetores();
+        }
     }
 }

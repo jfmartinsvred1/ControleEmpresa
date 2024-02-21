@@ -13,14 +13,15 @@ var conn = (builder.Configuration.GetConnectionString("ControleEmpresaConn"));
 builder.Services.AddDbContext<AppDbContext>(opts => opts.UseMySql(
     conn, ServerVersion.AutoDetect(conn)));
 
-builder.Services.AddScoped<IFuncionarioDao, FuncionarioDaoComEfCore>();
-builder.Services.AddScoped<ISetorDao, SetorDaoComEfCore>();
-builder.Services.AddScoped<IPontoDao, PontoDaoComEfCore>();
+builder.Services.AddTransient<IFuncionarioDao, FuncionarioDaoComEfCore>();
+builder.Services.AddTransient<ISetorDao, SetorDaoComEfCore>();
+builder.Services.AddTransient<IPontoDao, PontoDaoComEfCore>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddControllers().AddNewtonsoftJson
     (opts => opts.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

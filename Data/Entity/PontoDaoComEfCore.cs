@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using ControleEmpresa.Data.Dtos.PontoDTO;
-using ControleEmpresa.Filters.Pontos;
 using ControleEmpresa.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,27 +9,30 @@ namespace ControleEmpresa.Data.Entity
     {
         IMapper _mapper;
         AppDbContext _dbContext;
-        PontoFilter _filter;
-
-        public PontoDaoComEfCore(IMapper mapper, AppDbContext dbContext, PontoFilter filter)
+        public PontoDaoComEfCore(IMapper mapper, AppDbContext dbContext)
         {
             _mapper = mapper;
             _dbContext = dbContext;
-            _filter = filter;
         }
 
         public void Entrada(CreatePontoDto dto)
         {
-            if (_filter.VerificaSeNaoBateuPontoDeEntrada(dto.FuncionarioId))
+            if (!VerificaSeJaEntrou(dto.FuncionarioId))
             {
                 var ponto = _mapper.Map<Ponto>(dto);
                 _dbContext.Pontos.Add(ponto);
                 _dbContext.SaveChanges();
             }
-            
         }
 
-        public IEnumerable<ReadPontoDto> ReadPonto()
+        public IEnumerable<ReadPontoDto> LerPontosDeUmFuncPorId(int id)
+        {
+            var pontos = _dbContext.Pontos.Where(i => i.FuncionarioId == id).ToList();
+            var pontoDto = _mapper.Map<List<ReadPontoDto>>(pontos);
+            return pontoDto;
+        }
+
+        public IEnumerable<ReadPontoDto> LerTodosPontos()
         {
             var pontos = _dbContext.Pontos.Include(f=>f.Funcionario).ToList();
             var pontosDto = _mapper.Map<List<ReadPontoDto>>(pontos);
@@ -40,10 +42,23 @@ namespace ControleEmpresa.Data.Entity
         public void Saida(int funcId)
         {
             var ponto = _dbContext.Pontos.FirstOrDefault(func=>func.FuncionarioId == funcId && func.Saida==null);
-            ponto.Saida = DateTime.Now;
+            ponto.Saida = DateTime.Now.TimeOfDay;
             _dbContext.Pontos.Update(ponto);
             _dbContext.SaveChanges();
         }
-        
+
+        public bool VerificaSeJaEntrou(int id)
+        {
+            var pontos = _dbContext.Pontos.Where(p=>p.FuncionarioId==id);
+            var temp = false;
+            foreach (var ponto in pontos)
+            {
+                if (ponto.Saida == null)
+                {
+                    temp = true;
+                }
+            }
+            return temp;
+        }
     }
 }

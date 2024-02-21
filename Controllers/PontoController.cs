@@ -1,6 +1,5 @@
 ﻿using ControleEmpresa.Data;
 using ControleEmpresa.Data.Dtos.PontoDTO;
-using ControleEmpresa.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleEmpresa.Controllers
@@ -28,9 +27,15 @@ namespace ControleEmpresa.Controllers
             return NoContent();
         }
         [HttpGet]
-        public IEnumerable<ReadPontoDto> Get()
+        public IEnumerable<ReadPontoDto> GetAll()
         {
-            return _pontoDao.ReadPonto();
+            return _pontoDao.LerTodosPontos();
+
+        }
+        [HttpGet("PorId")]
+        public IEnumerable<ReadPontoDto> GetPorId(int id)
+        {
+            return _pontoDao.LerPontosDeUmFuncPorId(id);
         }
     }
 }

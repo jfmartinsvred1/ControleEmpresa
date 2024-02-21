@@ -1,7 +1,6 @@
 ﻿using ControleEmpresa.Data;
 using ControleEmpresa.Data.Dtos.FuncionarioDTO;
 using Microsoft.AspNetCore.Mvc;
-using ControleEmpresa.Filters.Pontos;
 
 namespace ControleEmpresa.Controllers
 {
@@ -9,13 +8,11 @@ namespace ControleEmpresa.Controllers
     [Route("[controller]")]
     public class FuncionarioController:ControllerBase
     {
-        PontoFilter _pontoFilter;
         IFuncionarioDao _funcionarioDao;
 
-        public FuncionarioController(IFuncionarioDao funcionarioDao, PontoFilter pontoFilter)
+        public FuncionarioController(IFuncionarioDao funcionarioDao)
         {
             _funcionarioDao = funcionarioDao;
-            _pontoFilter = pontoFilter;
         }
 
         [HttpPost]
@@ -28,11 +25,6 @@ namespace ControleEmpresa.Controllers
         public IEnumerable<ReadFuncionarioDto> ListarFuncionarios()
         {
             return _funcionarioDao.LerTodosFuncionarios();
-        }
-        [HttpGet("ghg")]
-        public IActionResult GetTeste(int id)
-        {
-            return Ok(_pontoFilter.RetornaHorarioMedioDeEntrada(id));
         }
     }
 }

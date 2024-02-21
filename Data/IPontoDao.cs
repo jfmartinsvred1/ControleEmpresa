@@ -1,5 +1,4 @@
 ﻿using ControleEmpresa.Data.Dtos.PontoDTO;
-using ControleEmpresa.Models;
 
 namespace ControleEmpresa.Data
 {
@@ -7,6 +6,7 @@ namespace ControleEmpresa.Data
     {
         void Entrada(CreatePontoDto ponto);
         void Saida(int funcId);
-        IEnumerable<ReadPontoDto> ReadPonto();
+        IEnumerable<ReadPontoDto> LerTodosPontos();
+        IEnumerable<ReadPontoDto> LerPontosDeUmFuncPorId(int id);
     }
 }

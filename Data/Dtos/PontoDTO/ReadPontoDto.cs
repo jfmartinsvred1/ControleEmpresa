@@ -2,9 +2,10 @@
 {
     public class ReadPontoDto
     {
-        public DateTime Dia { get; set; } 
-        public DateTime Entrada { get; set; } 
-        public DateTime Saida { get; set; }
+        public DateTime Dia { get; set; }
+        public DayOfWeek DiaDaSemana { get; set; }
+        public TimeSpan Entrada { get; set; } 
+        public TimeSpan Saida { get; set; }
         public int FuncionarioId { get; set; }
     }
 }

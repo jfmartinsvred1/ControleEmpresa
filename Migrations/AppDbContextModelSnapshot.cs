@@ -50,14 +50,19 @@ namespace ControleEmpresa.Migrations
                     b.Property<DateTime>("Dia")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("Entrada")
-                        .HasColumnType("datetime(6)");
+                    b.Property<int>("DiaDaSemana")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("Entrada")
+                        .HasColumnType("time")
+                        .HasColumnName("Entrada");
 
                     b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Saida")
-                        .HasColumnType("datetime(6)");
+                    b.Property<TimeSpan?>("Saida")
+                        .HasColumnType("time")
+                        .HasColumnName("Saida");
 
                     b.HasKey("PontoId");
 

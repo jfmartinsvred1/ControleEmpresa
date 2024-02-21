@@ -58,8 +58,9 @@ namespace ControleEmpresa.Migrations
                     PontoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Dia = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Entrada = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Saida = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DiaDaSemana = table.Column<int>(type: "int", nullable: false),
+                    Entrada = table.Column<TimeSpan>(type: "time", nullable: false),
+                    Saida = table.Column<TimeSpan>(type: "time", nullable: true),
                     FuncionarioId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
