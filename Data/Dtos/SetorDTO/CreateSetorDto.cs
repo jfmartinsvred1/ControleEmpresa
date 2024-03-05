@@ -6,5 +6,6 @@ namespace ControleEmpresa.Data.Dtos.SetorDTO
     {
         [MaxLength(20)]
         public string? Nome { get; set; }
+        public string Cor { get; set; }
     }
 }

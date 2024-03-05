@@ -8,6 +8,7 @@ namespace ControleEmpresa.Data
         void Criar(CreateFuncionarioDto dto);
         IEnumerable<ReadFuncionarioDto> LerTodosFuncionarios();
         IEnumerable<ReadFuncionarioDto> LerFuncionariosPorSetor(string setor);
+        TimeSpan HorarioMedioDeEntrada(int id);
         ReadFuncionarioDto LerFuncionarioUnico(int id);
         void DeletarFuncionario(int id);
     }

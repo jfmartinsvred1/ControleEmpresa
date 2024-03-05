@@ -5,6 +5,7 @@ namespace ControleEmpresa.Data.Dtos.FuncionarioDTO
 {
     public class ReadFuncionarioDto
     {
+        public int FuncionarioId { get; set; }
         public string? Nome { get; set; }
         public DateTime DataNascimento { get; set; }
         public DateTime DataDeContratacao { get; set; }

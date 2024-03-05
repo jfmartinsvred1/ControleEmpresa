@@ -21,7 +21,7 @@ namespace ControleEmpresa.Controllers
             return NoContent();
         }
         [HttpPost("Saida")]
-        public IActionResult Saida(int id)
+        public IActionResult Saida(CreatePontoDto id)
         {
             _pontoDao.Saida(id);
             return NoContent();
@@ -37,10 +37,6 @@ namespace ControleEmpresa.Controllers
         {
             return _pontoDao.LerPontosDeUmFuncPorId(id);
         }
-        [HttpGet("string")]
-        public string get(int id)
-        {
-            return _pontoDao.DiaDaSemana(id);
-        }
+        
     }
 }

@@ -16,13 +16,6 @@ namespace ControleEmpresa.Data.Entity
             _dbContext = dbContext;
         }
 
-        public string DiaDaSemana(int id)
-        {
-            var pontos = LerPontosDeUmFuncPorId(id).First();
-            return pontos.DiaDaSemana.ToString("",CultureInfo.InvariantCulture);
-            
-        }
-
         public void Entrada(CreatePontoDto dto)
         {
             if (!VerificaSeJaEntrou(dto.FuncionarioId))
@@ -47,9 +40,10 @@ namespace ControleEmpresa.Data.Entity
             return pontosDto;
         }
 
-        public void Saida(int funcId)
+        public void Saida(CreatePontoDto funcId)
         {
-            var ponto = _dbContext.Pontos.FirstOrDefault(func=>func.FuncionarioId == funcId && func.Saida==null);
+
+            var ponto = _dbContext.Pontos.FirstOrDefault(func=>func.FuncionarioId == funcId.FuncionarioId && func.Saida==null);
             ponto.Saida = DateTime.Now.TimeOfDay;
             _dbContext.Pontos.Update(ponto);
             _dbContext.SaveChanges();

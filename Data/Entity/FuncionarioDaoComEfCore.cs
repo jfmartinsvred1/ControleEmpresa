@@ -46,5 +46,30 @@ namespace ControleEmpresa.Data.Entity
             var funcsDto = _mapper.Map<List<ReadFuncionarioDto>>(func);
             return funcsDto;
         }
+        public TimeSpan HorarioMedioDeEntrada(int id)
+        {
+            var pontos = _context.Pontos.Where(i=>i.FuncionarioId==id).ToList();
+            int horas = 0;
+            int min = 0;
+            foreach (var ponto in pontos)
+            {
+                horas += ponto.Entrada.Hours;
+                min += ponto.Entrada.Minutes;
+
+            }
+            horas /= pontos.Count();
+            min /= pontos.Count();
+            string minS = $"{min}";
+            if (min < 10)
+            {
+                minS = $"0" + min;
+            }
+
+
+            string horaCompleta = $"{horas}:{minS}";
+            
+            TimeSpan time = new TimeSpan(horas,int.Parse(minS),0);
+            return time;
+        }
     }
 }

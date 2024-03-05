@@ -9,9 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 var conn = (builder.Configuration.GetConnectionString("ControleEmpresaConn"));
+var myAllowSpecificOrigins = "_var myAllowSpecificOrigins";
 
 builder.Services.AddDbContext<AppDbContext>(opts => opts.UseMySql(
     conn, ServerVersion.AutoDetect(conn)));
+builder.Services.AddCors(opts =>
+{
+    opts.AddPolicy(name: myAllowSpecificOrigins, builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+        .AllowAnyOrigin()
+        .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddTransient<IFuncionarioDao, FuncionarioDaoComEfCore>();
 builder.Services.AddTransient<ISetorDao, SetorDaoComEfCore>();
@@ -38,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(myAllowSpecificOrigins);
 
 app.UseAuthorization();
 

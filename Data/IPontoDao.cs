@@ -5,9 +5,9 @@ namespace ControleEmpresa.Data
     public interface IPontoDao
     {
         void Entrada(CreatePontoDto ponto);
-        void Saida(int funcId);
+        void Saida(CreatePontoDto funcId);
         IEnumerable<ReadPontoDto> LerTodosPontos();
         IEnumerable<ReadPontoDto> LerPontosDeUmFuncPorId(int id);
-        string DiaDaSemana(int id);
+
     }
 }
