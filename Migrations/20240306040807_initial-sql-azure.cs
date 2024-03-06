@@ -1,42 +1,37 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ControleEmpresa.Migrations
 {
-    public partial class initial : Migration
+    public partial class initialsqlazure : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
                 name: "Setores",
                 columns: table => new
                 {
                     SetorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(60)", nullable: true),
+                    Cor = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Setores", x => x.SetorId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Funcionarios",
                 columns: table => new
                 {
                     FuncionarioId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataNascimento = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(60)", nullable: true),
+                    DataNascimentos = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataDeContratacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SetorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -48,16 +43,15 @@ namespace ControleEmpresa.Migrations
                         principalTable: "Setores",
                         principalColumn: "SetorId",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
                 name: "Pontos",
                 columns: table => new
                 {
                     PontoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Dia = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Dia = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DiaDaSemana = table.Column<int>(type: "int", nullable: false),
                     Entrada = table.Column<TimeSpan>(type: "time", nullable: false),
                     Saida = table.Column<TimeSpan>(type: "time", nullable: true),
@@ -72,8 +66,7 @@ namespace ControleEmpresa.Migrations
                         principalTable: "Funcionarios",
                         principalColumn: "FuncionarioId",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Funcionarios_SetorId",

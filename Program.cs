@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 var conn = (builder.Configuration.GetConnectionString("ControleEmpresaConn"));
 var myAllowSpecificOrigins = "_var myAllowSpecificOrigins";
 
-builder.Services.AddDbContext<AppDbContext>(opts => opts.UseMySql(
-    conn, ServerVersion.AutoDetect(conn)));
+builder.Services.AddDbContext<AppDbContext>(opts => opts.UseSqlServer(
+    conn));
 builder.Services.AddCors(opts =>
 {
     opts.AddPolicy(name: myAllowSpecificOrigins, builder =>

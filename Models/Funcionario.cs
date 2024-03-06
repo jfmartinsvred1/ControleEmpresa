@@ -7,7 +7,7 @@ namespace ControleEmpresa.Models
         [Key]
         public int FuncionarioId { get; set; }
         public string? Nome { get; set; }
-        public DateTime DataNascimento { get; set; }
+        public DateTime DataNascimentos { get; set; }
         public DateTime DataDeContratacao { get; set; }
         public int SetorId { get; set; }
         public Setor? Setor { get; set; }

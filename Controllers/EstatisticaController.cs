@@ -1,6 +1,10 @@
-﻿namespace ControleEmpresa.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace ControleEmpresa.Controllers
 {
-    public class EstatisticaController
+    [Controller]
+    [Route("[controller]")]
+    public class EstatisticaController: ControllerBase
     {
     }
 }

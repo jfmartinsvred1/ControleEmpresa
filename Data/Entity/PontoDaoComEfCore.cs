@@ -47,6 +47,7 @@ namespace ControleEmpresa.Data.Entity
             ponto.Saida = DateTime.Now.TimeOfDay;
             _dbContext.Pontos.Update(ponto);
             _dbContext.SaveChanges();
+
         }
 
         public bool VerificaSeJaEntrou(int id)

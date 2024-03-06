@@ -3,6 +3,7 @@ using System;
 using ControleEmpresa.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -17,7 +18,9 @@ namespace ControleEmpresa.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("ControleEmpresa.Models.Funcionario", b =>
                 {
@@ -25,14 +28,16 @@ namespace ControleEmpresa.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DataDeContratacao")
-                        .HasColumnType("datetime(6)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FuncionarioId"), 1L, 1);
 
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateTime>("DataDeContratacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataNascimentos")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SetorId")
                         .HasColumnType("int");
@@ -50,8 +55,10 @@ namespace ControleEmpresa.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PontoId"), 1L, 1);
+
                     b.Property<DateTime>("Dia")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("DiaDaSemana")
                         .HasColumnType("int");
@@ -80,13 +87,15 @@ namespace ControleEmpresa.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SetorId"), 1L, 1);
+
                     b.Property<string>("Cor")
                         .IsRequired()
                         .HasMaxLength(7)
-                        .HasColumnType("varchar(7)");
+                        .HasColumnType("nvarchar(7)");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SetorId");
 
